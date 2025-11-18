@@ -13,7 +13,7 @@ pipeline{
   }
   post{
     always{
-      echo "========always========"
+      sh "rm -rf ./*"
     }
     success{
       echo "========pipeline executed successfully ========"
