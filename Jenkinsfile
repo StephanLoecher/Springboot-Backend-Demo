@@ -7,13 +7,13 @@ pipeline{
       stage("Cleanup"){
       steps{
         sh "mvn --version"
-        sh "mvn clean"
+        sh "mvn compile"
       }      
     }
   }
   post{
     always{
-      sh "rm -rf ./*"
+      echo "Always is running"
     }
     success{
       echo "========pipeline executed successfully ========"
