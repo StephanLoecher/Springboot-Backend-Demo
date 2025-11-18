@@ -6,7 +6,7 @@ pipeline{
   stages{
       stage("Cleanup"){
       steps{
-        mvn clean
+        sh "mvn clean"
       }      
     }
   }
