@@ -1,9 +1,12 @@
 pipeline{
   agent any
+  tools{
+    maven 'Maven'
+  }
   stages{
-      stage("A"){
+      stage("Cleanup"){
       steps{
-        echo "Webhook works"
+        mvn clean
       }      
     }
   }
