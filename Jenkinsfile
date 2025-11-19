@@ -13,7 +13,7 @@ pipeline{
   }
   post{
     always{
-      sh "mvn clean"
+      echo "mvn clean"
     }
     success{
       echo "========pipeline executed successfully ========"
