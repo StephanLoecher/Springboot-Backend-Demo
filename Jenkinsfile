@@ -7,7 +7,7 @@ pipeline{
       stage("Cleanup"){
       steps{
         sh "mvn --version"
-        sh "mvn compile"
+        sh "mvn package"
       }      
     }
   }
