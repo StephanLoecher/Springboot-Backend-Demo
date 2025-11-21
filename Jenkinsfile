@@ -12,7 +12,7 @@ pipeline{
   }
   post{
     always{
-      echo "mvn clean"
+      cleanWs()
     }
     success{
       echo "========pipeline executed successfully ========"
