@@ -6,7 +6,7 @@ pipeline{
   stages{
       stage("Cleanup"){
       steps{
-        sh "mvn dependency:treegit"
+        sh "mvn dependency:tree"
       }      
     }
   }
