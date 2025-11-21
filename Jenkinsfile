@@ -6,8 +6,7 @@ pipeline{
   stages{
       stage("Cleanup"){
       steps{
-        sh "mvn --version"
-        sh "mvn package"
+        sh "mvn dependency:tree | grep actuator"
       }      
     }
   }

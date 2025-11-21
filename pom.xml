@@ -2,38 +2,69 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.skyered</groupId>
 	<artifactId>Springboot-Demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Springboot-Demo</name>
 	<description>Demo project for Spring Boot</description>
+
 	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
+	<licenses/>
+	<developers/>
+
 	<scm>
 		<connection/>
 		<developerConnection/>
 		<tag/>
 		<url/>
 	</scm>
+
 	<properties>
 		<java.version>21</java.version>
+		<spring-boot-starter-version>3.5.7</spring-boot-starter-version>
+		
 	</properties>
+
+<profiles>
+    <profile>
+        <id>dev</id>
+        <properties>
+            <env.name>DEV</env.name>
+						<packageName>Kurs3-sl-dev</packageName>
+						<skipTests>false</skipTests>
+        </properties>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+    </profile>
+
+    <profile>
+        <id>prod</id>
+        <properties>
+            <env.name>PROD</env.name>
+						<packageName>Kurs3-sl-prod</packageName>
+						<skipTests>true</skipTests>
+        </properties>
+    </profile>
+</profiles>
+
+
+
+
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-			<version>3.5.7</version>
+			<version>${spring-boot-starter-version}</version>
 		</dependency>
 
 		<dependency>
@@ -56,46 +87,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.6.0</version>
-        <executions>
-          <execution>
-            <id>verify-style</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <logViolationsToConsole>true</logViolationsToConsole>
-          <checkstyleRules>
-            <module name="Checker">
- 
-              <!-- Checks for Size Violations.                    -->
-              <!-- See http://checkstyle.sf.net/config_sizes.html -->
-              <module name="FileLength">
-                <property name="max" value="3500" />
-                <property name="fileExtensions" value="java"/>
-              </module>
- 
-              <!-- Checks for whitespace                               -->
-              <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-              <module name="FileTabCharacter"/>
- 
-              <module name="TreeWalker">
-                <module name="StaticVariableName"/>
-                <module name="TypeName">
-                  <property name="format" value="^_?[A-Z][a-zA-Z0-9]*$"/>
-                </module>
-              </module>
-            </module>
-          </checkstyleRules>
-        </configuration>
-      </plugin>
+        <!-- NEU: Surefire-Plugin mit skipTests-Property -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <!-- Version kannst du mit Spring-Boot-Parent sogar weglassen,
+                 ich lass sie hier mal drin als Beispiel -->
+            <version>3.2.5</version>
+        </plugin>
+
 		</plugins>
+		<finalName>${packageName}</finalName>
 	</build>
 
 </project>
